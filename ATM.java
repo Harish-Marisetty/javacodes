@@ -13,17 +13,23 @@ public class ATM {
         switch(option){
             case 1:
             System.out.println("Enter the amount");
-            int withdrawl = sc.nextInt();
-            if(withdrawl > 0 && withdrawl <= ba.checkbalance()){
-                System.out.println("Withdrawl is successful");
-                System.out.println(ba.checkbalance());
-            }
-            else {
-                System.out.println("Insufficent funds");
-            }
+            double withdrawl = sc.nextDouble();
+            ba.withdraw(withdrawl);
+            break;
             case 2:
             System.out.println("Enter the amount to be deposited");
-            int depo = sc.nextInt();
+            double depo = sc.nextDouble();
+            ba.deposit(depo);
+            break;
+            case 3:
+            System.out.println("Checking your banka balance");
+            ba.checkbalance();
+            break;
+            case 4:
+            System.exit(0);
+            default : 
+            System.out.println("Enter the valid transaction");
+            break;
             
         }
     }
@@ -32,7 +38,7 @@ public class ATM {
 class BankAccount{
   private double balance = 1000;
   public double getbalance(){
-    return this.balancebalance;
+    return this.balance;
   }
   public void withdraw(double amount){
     if(amount > 0 && amount <= getbalance()){
@@ -42,6 +48,7 @@ class BankAccount{
     }
     else {
         System.out.println("insufficient funds ");
+        checkbalance();
     }
   }
    
@@ -51,7 +58,8 @@ class BankAccount{
     checkbalance();
    }
    
-   double checkbalance(){
+   public void checkbalance(){
     System.out.println("your account balance is :"+ getbalance());
    }
 }
+
